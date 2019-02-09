@@ -1,0 +1,107 @@
+<!-- You can download and modify a template for a site like this at https://theportfolio.pw/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Configure basics -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Set up title, favicon, and description -->
+    <title>KittyBot</title>
+    <link rel="shortcut icon" href="assets/wrench.ico">
+    <meta name="description" content="KittyBot is a fun discord bot that has a mix of silly and useful commands! If you like the bot, consider supporting development on Patreon!">
+
+    <!-- Grab Bootstrap and Fontawesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Quicksand" rel="stylesheet">
+
+    <!-- Add our style sheet -->
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+  </head>
+
+
+  <!-- Page-specific stuff here... -->
+  <style>
+    .product-image {
+      margin: 10px 0px;
+      border-radius: 10000px;
+      box-shadow: 0 0 0 15px #fff;
+    }
+
+    .product-description {
+      text-align: center;
+    }
+
+    .product-description-header {
+      margin-top: 1.25em;
+    }
+
+    .product-wide-link {
+      /* Nothing fancy about those links, let autosizing handle it! */
+    }
+
+    .product-get-button {
+      margin-top: 2.5em;
+    }
+  </style>
+
+
+  <!-- This is the body of the site: This is what's displayed in the browser! -->
+  <body id="grad">
+    <div id="grad-child"></div>
+
+
+    <div class="container">
+      <div class="jumbotron">
+       
+        <!-- Header, etc -->
+        <h1 class="product-title">KittyBot</h1>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col">
+            <img class="img-fluid product-image" src="assets/paw.png" alt="product image">
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+
+        <!-- Download -->
+        <div class="product-get-button">
+          <a class="btn btn-outline-dark product-wide-link fa-1x" role="button" href="https://discordapp.com/oauth2/authorize?&client_id=392586623524798464&scope=bot&permissions=8"><i class="fas fa-plus"></i> Add to Discord</i></i></a>
+        </div>
+
+        <!-- Text sections -->
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <h2 class="product-description-header">About KittyBot</h2>
+            <p class="product-description">KittyBot is a Discord bot with a fair share of both useful and silly commands! Kitty can look things up on several different websites, play games with you, compile your code, roll dice, and all sorts of other stuff!</p>
+            <a class="btn btn-outline-dark product-wide-link" role="button" href="info/"><i class="fas fa-book"></i> More Info</a> 
+          </div>
+          <div class="col-md-5">
+            <h2 class="product-description-header">Support Us</h2>
+            <p class="product-description">This project wouldn't be possible without support and feedback from everyone! Thank you, and be sure to support us on Patreon for access to exclusive dev posts, updates, and rewards!</p>
+          <a class="btn btn-outline-dark product-wide-link" role="button" href="https://www.patreon.com/Kittybot"><i class="fab fa-patreon"></i> Patreon</a>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+
+        <hr/>
+
+        <div class="row product-social-footer ">
+          <div class="product-social-footer">
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://www.patreon.com/Kittybot"><i class="fab fa-patreon"></i></a>
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://twitter.com/KittyBot_"><i class="fab fa-twitter"></i></a>
+            <!--a class="btn btn-outline-dark product-social-link" role="button" href="https://discord.com/"><i class="fab fa-discord"></i></a-->
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://github.com/ReverieWisp/Kitty-Sandbox"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

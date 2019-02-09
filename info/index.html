@@ -1,0 +1,121 @@
+<!-- You can download and modify a template for a site like this at https://theportfolio.pw/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Configure basics -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Set up title, favicon, and description -->
+    <title>KittyBot Info</title>
+    <link rel="shortcut icon" href="assets/wrench.ico">
+    <meta name="description" content="Full command list, bot info, and other additional stuff for KittyBot!">
+
+    <!-- Grab Bootstrap and Fontawesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Quicksand" rel="stylesheet">
+
+    <!-- Add style sheet -->
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+  </head>
+
+
+  <!-- Stylesheet added here for ease of iteration. This will make the page load fast, but it can make it harder to manage if your site grows. If you add more pages, heavily consider moving this out to a separate file. -->
+  <style>
+    .product-commands {
+      text-align: left;
+    }
+    .product-back-button {
+      margin-bottom: 1em;
+    }
+  </style>
+
+
+  <!-- This is the body of the site: This is what's displayed in the browser! -->
+  <body id="grad">
+    <div id="grad-child"></div>
+
+
+    <div class="container">
+      <div class="jumbotron">
+       
+
+        <!-- Header, etc -->
+        <h1 id="commands" class="product-title">Commands</h1>
+        <div class="row">
+          <!-- Download -->
+          <div class="col-md-2"></div>
+          <div class="col product-commands ">
+            <a class="btn btn-outline-dark product-back-button fa-1x" role="button" href=".."><i class="fas fa-chevron-circle-left"></i> Back</a>
+<h2>Admin commands</h2>
+<p>
+  <code>indicator</code>: Changes the command indicator to any single character. By default, it's '!'. If more than one character is provided, the first one is used!<br/>
+  <code>rating</code>: '0' is fully sfw (Derpi and e621 searches are disabled), '1' is filtered (kitty auto appends a sfw tag on any searches), '2' is nsfw (any search will go through). Some other words are supported for setting filter as well.<br/>
+</p>
+
+
+<h2>Mod commands</h2>
+<p>
+  <code>poll</code>: 'start' will start a new poll with the query of the line you put after, 'choice' will add a choice to the poll, 'stop' will end the poll<br/>
+  <code>givebeans</code>: Gives beans to the mentioned users!<br/>
+  <code>rpg</code>: Admin+ command only right now - experimental text RPG! Format is !rpg <rpg command><br/>
+</p>
+
+
+<h2>General commands</h2>
+<p>
+  <code>boop</code>: Kitty will react with a counter<br/>
+  <code>yeet</code>: Yeet yourself or yeet a friend with @!<br/>
+  <code>role</code>: Will show the current role you have, Admins can change others roles with input of 'role x @y' with x being blacklist, general, mod, or admin. Blacklist will not allow the user to interact with kitty anymore, general mod and admin will give the user access to those commands.<br/>
+  <code>ping</code>: Will respond with Pong!<br/>
+  <code>roll</code>: Based on input of xdy where x is number of dice and y is faces kitty will roll that amount of dice, display the individual rolls and total<br/>
+  <code>info</code>, <code>about</code>: Provides author info and a link to Kitty's website<br/>
+  <code>blur</code>: Blurs your icon or the icon of a friend you mentioned<br/>
+  <code>choose</code>: With an input of x,y,z where x y and z are all choices, kitty will choose one<br/>
+  <code>rpstart</code>: Starts an rp, add people to it by mentioning them!<br/>
+  <code>bet</code>: Allows you to bet your beans, set your amount after the command! Warning: House always wins!
+Sets of 3 will get 5x, 4 will get 10x, and 5 will get 1000x<br/>
+  <code>derp</code>: Will search derpibooru for the tags entered, if KittyBot's content filter allows it<br/>
+  <code>java</code>: Will compile any java code you put in! Supports Java 1.8<br/>
+  <code>beans</code>: Displays how many beans you have<br/>
+  <code>cplus</code>: Will try to compile any c++ code you put in! Supports up to C++14 standard, uses g++.<br/>
+  <code>tony</code>, <code>stark</code>, <code>dontfeelgood</code>: Snaps your icon or the icon of a friend you mentioned<br/>
+  <code>vote</code>: Vote in a poll with the choice number, won't work if no poll is running, you can't change your vote once you have cast it! Be careful!<br/>
+  <code>results</code>: Will show current results of a poll and percentages of votes per choice<br/>
+  <code>wolfram</code>: Will query wolframalpha with your question and give a full image output of the answer<br/>
+  <code>map</code>: Generates a map! You can pass additional information if you want with the flags `-s<seed> -w<width> -h<height>`. If one of the fields isn't provided, its default will be used. Note that adjusting the width and height impacts the map outcomes.
+
+Default seed: Random
+Default Width: 35(max 50)
+Default Height: 25(max 35)<br/>
+  <code>e621</code>: Will search e621 for the tags entered, if KittyBot's content filter allows it<br/>
+    <code>perish</code>, <code>thenperish</code>: Adds a red, 'a n g e r y' overlay to your icon or the icon of a friend you mentioned<br/>
+    <code>showpoll</code>: Will show the current poll running<br/>
+  <code>rpend</code>: Ends RP in channel<br/>
+  <code>help</code>: Lets you look up specific commands, or get a link to a list of all commands.<br/>
+</p>
+
+
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+
+        <hr/>
+
+        <div class="row product-social-footer ">
+          <div class="product-social-footer">
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://www.patreon.com/Kittybot"><i class="fab fa-patreon"></i></a>
+            <!--a class="btn btn-outline-dark product-social-link" role="button" href="https://discord.com/"><i class="fab fa-discord"></i></a-->
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://github.com/ReverieWisp/Kitty-Sandbox"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

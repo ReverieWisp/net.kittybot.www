@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+h2 {
+  font-family: 'Quicksand', sans-serif;
+}
+
+#grad {
+  background-image: linear-gradient(#B1A9D6, #fffcdc);
+  text-align: center;
+}
+
+#grad-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url("stripes-light.png");
+  display: block;
+  z-index: -1;
+}
+
+.container {
+  margin-bottom: 0px;
+}
+
+.jumbotron {
+  background-color: rgba(0,0,0,0);
+  margin-bottom: 0px
+}
+
+.product-title {
+  margin-bottom: 0.5em;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 60px;
+  color: #765DA3;
+}
+
+.product-social-link {
+  font-size: 1em;
+  width: 40px;
+}
+
+/* Fix youtube's logo being wide */
+.product-social-link > .fa-youtube {
+  position: relative;
+  left: -3px;
+}
+
+.product-social-footer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
