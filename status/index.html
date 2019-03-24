@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kittybot Server Status</title>
+    <meta name="description" content="Remotely monitors Kittybot servers and server status - tracked with the derg.app API">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Quicksand" rel="stylesheet">
+
+    <!-- Add our style sheet -->
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+  </head>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+    }
+
+    h6 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 10px;
+    }
+
+    .kitty-label {
+      text-align: left;
+      margin-bottom: 0px;
+      color: rgba(0, 0, 0, 0.2);
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .kitty-graph {
+      width: 250px;
+      margin: 5px;
+      display: inline-block;
+      text-align: left;
+      margin-top: 11px;
+      margin-bottom: 8px;
+    }
+
+    .kitty-canvas {
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    .kitty-tick {
+      display:inline-block;
+      padding-bottom: 0px;
+      margin-left: auto; 
+      margin-right: auto;
+    }
+
+    .kitty-highlight {
+      color: #765DA3;
+    }
+  </style>
+  <body id="grad">
+    <div id="grad-child"></div>
+    <div class="container">
+      <div class="jumbotron">
+
+        <h1 class="product-title">Status</h1>
+        <div class="kitty-tick">
+          <h6 class="kitty-label">Next tick in: <span id="tick">0.0</span>s</h6>
+          <div class="clearfix" style="border: 1px solid rgba(0, 0, 0,.1);">
+
+            <div class="kitty-graph">
+              <h6>
+                <strong>CPU usage:</strong> <span id="cpu-percentage-kitty"></span><br/>
+                User: <span id="cpu-user-kitty"></span><br/>
+                System: <span id="cpu-system-kitty"></span>
+              </h6>
+              <canvas id="cpuCanvas-kitty" class="kitty-canvas" width="250" height="100"></canvas>
+            </div>
+
+            <div class="kitty-graph">
+              <h6><strong>RAM usage:</strong> <span id="ram-percentage-kitty"></span><br/>
+                In use: <span id="ram-used-kitty"></span> (cached: <span id="ram-cached-kitty"></span>)<br/>
+                Total: <span id="ram-total-kitty"></span><br/>
+                
+              </h6>
+              <canvas id="ramCanvas-kitty" class="kitty-canvas" width="250" height="100"></canvas>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+
+    // Variables
+    let tickRate = 5000;       // MS between API requests
+    let displayTickRate = 100; // MS between updating seconds left
+    let displayTicks = 0;      // Times display updated since last API request
+    let kittyKey = 'twodrop';  // Name of kitty's server
+
+    // Called as the result of error with XMLHttpRequest
+    function onRequestError(err) {
+      console.log('Fetch Error:', err );
+    }
+
+    function onStatsKey() {
+      let stats = JSON.parse(this.responseText);
+      let ramPercentage = document.getElementById(`ram-percentage-kitty`);
+      let ramTotal = document.getElementById(`ram-total-kitty`);
+      let ramUsed = document.getElementById(`ram-used-kitty`);
+      let ramCached = document.getElementById(`ram-cached-kitty`);
+      let cpuPercentage = document.getElementById(`cpu-percentage-kitty`);
+      let cpuUser = document.getElementById(`cpu-user-kitty`);
+      let cpuSystem = document.getElementById(`cpu-system-kitty`);
+
+      let ramDecimals = 2;
+      let cpuDecimals = 2;
+      let ramLoad = stats.ramLoadUsed[0] + stats.ramLoadCached[0];
+
+      let start = '<span class = "kitty-highlight">';
+      let end = '</span>';
+
+      ramPercentage.innerHTML = `${start}${(stats.ramLoadUsed[0] / stats.ramMax * 100).toFixed(ramDecimals)}${end}%`;
+      ramTotal.innerHTML = `${start}${(stats.ramMax / 1024).toFixed(ramDecimals)}${end}GB`;
+      ramUsed.innerHTML = `${start}${(stats.ramLoadUsed[0] / 1024).toFixed(ramDecimals)}${end}GB`;
+      ramCached.innerHTML = `${start}${(stats.ramLoadCached[0] / 1024).toFixed(ramDecimals)}${end}GB`;
+      cpuPercentage.innerHTML = `${start}${(stats.cpuLoadSystem[0] + stats.cpuLoadUser[0]).toFixed(2)}${end}%`;
+      cpuUser.innerHTML = `${start}${stats.cpuLoadUser[0].toFixed(2)}${end}%`;
+      cpuSystem.innerHTML = `${start}${stats.cpuLoadSystem[0].toFixed(2)}${end}%`;
+
+      let cpuTotalVals = [];
+      for(let i = 0; i < stats.cpuLoadUser.length && i < stats.cpuLoadSystem.length; ++i) {
+        cpuTotalVals.push(stats.cpuLoadSystem[i] + stats.cpuLoadUser[i]);
+      }
+
+      let ramTotalVals = []
+      for(let i = 0; i < stats.cpuLoadUser.length && i < stats.cpuLoadSystem.length; ++i) {
+        ramTotalVals.push(stats.ramLoadUsed[i] + stats.ramLoadCached[i]);
+      }
+
+      let primaryColor = "#404040";
+      let secondaryColor = "#765DA3";
+
+      redrawChart(`cpuCanvas-kitty`, cpuTotalVals, 100, primaryColor, true);
+      redrawChart(`cpuCanvas-kitty`, stats.cpuLoadSystem, 100, secondaryColor);
+      redrawChart(`ramCanvas-kitty`, ramTotalVals, stats.ramMax, secondaryColor, true);
+      redrawChart(`ramCanvas-kitty`, stats.ramLoadUsed, stats.ramMax, primaryColor);
+    }
+
+    function pingServerForStats(key) {
+      let url = `https://derg.app/api/v1/stats/get/${key}`;
+      let httpReq = new XMLHttpRequest();
+
+      httpReq.onload = onStatsKey;
+      httpReq.onerror = onRequestError;
+      httpReq.open('POST', url, true);
+        httpReq.setRequestHeader('Content-type', 'application/json');
+      httpReq.send();
+    }
+
+    // Redraws the CPU line
+    function redrawChart(elementID, dataArray, dataMax, color, shouldClear) {
+      let c = document.getElementById(elementID);
+      let ctx = c.getContext("2d");
+      const width = 250;
+      const height = 100;
+      const samples = 50;
+      const sampleWidth = width/samples;
+
+      // Clear
+      if(shouldClear)
+        ctx.clearRect(0, 0, c.width, c.height);
+
+      if(color)
+        ctx.strokeStyle = color;
+      else
+        ctx.strokeStyle = "#000000";
+
+      // Redraw
+      for(let i = 0; i < dataArray.length; i = i + 1) {
+        ctx.beginPath();
+        let last = i - 1;
+
+        if(last < 0)
+          last = 0;
+
+        ctx.moveTo(width - i * sampleWidth, (dataMax - dataArray[last]) / dataMax * height);
+        ctx.lineTo(width - (i + 1) * sampleWidth, (dataMax - dataArray[i]) / dataMax * height);
+        ctx.stroke();
+      }
+    }
+
+    // Ping constantly every so often after doing a setup request
+    pingServerForStats(kittyKey);
+    setInterval(function() {
+      displayTicks = 0;
+      pingServerForStats(kittyKey);
+    }, tickRate);
+
+    // Updates tick timer on site to display what's left
+    setInterval(function() {
+      displayTicks = displayTicks + 1;
+      let toDisplay = (tickRate - displayTickRate * displayTicks) / 1000;
+
+      if(toDisplay < 0)
+        toDisplay = 0;
+
+      document.getElementById('tick').innerHTML = toDisplay.toFixed(1);
+    }, displayTickRate);
+
+  </script>
+</html>
