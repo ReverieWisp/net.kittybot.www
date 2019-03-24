@@ -116,6 +116,8 @@
       console.log('Fetch Error:', err );
     }
 
+    // Acquires and displays raw stats from POST request in appropriate divs, 
+    // then kicks off chart line drawing. Prerequisite call: pingServerForStats
     function onStatsKey() {
       let stats = JSON.parse(this.responseText);
       let ramPercentage = document.getElementById(`ram-percentage-kitty`);
@@ -160,6 +162,7 @@
       redrawChart(`ramCanvas-kitty`, stats.ramLoadUsed, stats.ramMax, primaryColor);
     }
 
+    // Poke the server with a POST request to get a specific stats JSON object.
     function pingServerForStats(key) {
       let url = `https://derg.app/api/v1/stats/get/${key}`;
       let httpReq = new XMLHttpRequest();
@@ -167,11 +170,11 @@
       httpReq.onload = onStatsKey;
       httpReq.onerror = onRequestError;
       httpReq.open('POST', url, true);
-        httpReq.setRequestHeader('Content-type', 'application/json');
+      httpReq.setRequestHeader('Content-type', 'application/json');
       httpReq.send();
     }
 
-    // Redraws the CPU line
+    // Redraws the specified data for the specified element
     function redrawChart(elementID, dataArray, dataMax, color, shouldClear) {
       let c = document.getElementById(elementID);
       let ctx = c.getContext("2d");
@@ -180,7 +183,7 @@
       const samples = 50;
       const sampleWidth = width/samples;
 
-      // Clear
+      // Clear out previous drawing
       if(shouldClear)
         ctx.clearRect(0, 0, c.width, c.height);
 
