@@ -35,6 +35,7 @@
     .kitty-label {
       text-align: left;
       margin-bottom: 0px;
+      margin-left: 5px;
       color: rgba(0, 0, 0, 0.2);
     }
 
@@ -42,6 +43,12 @@
       content: "";
       clear: both;
       display: table;
+    }
+
+    .kitty-graph-group {
+      border: 1px solid rgba(0, 0, 0, .02);
+      background-color: rgba(0, 0, 0, .02);
+      border-radius: 7px;
     }
 
     .kitty-graph {
@@ -55,6 +62,7 @@
 
     .kitty-canvas {
       background-color: rgba(0, 0, 0, .1);
+      border-radius: 2px;
     }
 
     .kitty-tick {
@@ -76,7 +84,7 @@
         <h1 class="product-title">Status</h1>
         <div class="kitty-tick">
           <h6 class="kitty-label">Next tick in: <span id="tick">0.0</span>s</h6>
-          <div class="clearfix" style="border: 1px solid rgba(0, 0, 0,.1);">
+          <div class="clearfix kitty-graph-group">
 
             <div class="kitty-graph">
               <h6>
@@ -96,6 +104,12 @@
               <canvas id="ramCanvas-kitty" class="kitty-canvas" width="250" height="100"></canvas>
             </div>
 
+          </div>
+
+          <div>
+            <br/>
+            <a class="btn btn-outline-dark product-back-button fa-1x" role="button" href=".."><i class="fas fa-chevron-circle-left"></i> Back</a>
+            <br/>
           </div>
         </div>
 
