@@ -1,4 +1,4 @@
-# Makeshift localization
+Makeshift localization
 ---
 Localization is the act of taking content, usually text in applications, and changing it for a given place, and it's useful for application customization. While more conventional examples may be translating an application from english to spanish, localization is useful because it can allow you to tailor for individual situations as well. For this chatbot, my goal was to allow for customizing specific responses in different environments or servers.
 
@@ -6,12 +6,10 @@ A small selection of projects I've been on previously required localization, the
 
 ```javascript
 // ExampleFile.js
-
 alert(Strings.POPUP_OUTPUT_IF_CODE_COMPILED);
 ```
 ```javascript
 // Strings.js
-
 var const POPUP_OUTPUT_IF_CODE_COMPILED = "The code compiled!";
 ```
 
@@ -21,13 +19,11 @@ With pretty much just these two things in mind, I slapped together a prototype f
 
 ```java
 // ExampleFile.java
-
 System.out.println(Localizer.Stub("Defaulted string"));
 System.out.println(Localizer.Stub("Localized string"));
 ```
 ```
 // localizations.ini
-
 [ExampleFile]
 Defaulted string =
 Localized string = Localized text here
@@ -37,7 +33,6 @@ Behavior is as follows: Sections are defined simply for readability in the ini f
 
 ```
 // Some lookup somewhere...
-
 [Key: "Defaulted String", Value: "Defaulted String"],
 [Key: "Localized string", Value: "Localized text here"]
 ```

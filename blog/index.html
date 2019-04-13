@@ -1,0 +1,139 @@
+<!-- You can download and modify a template for a site like this at https://theportfolio.pw/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Configure basics -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Set up title, favicon, and description -->
+    <title>KittyBot Blog</title>
+    <link rel="shortcut icon" href="assets/wrench.ico">
+    <meta name="description" content="KittyBot Development Blog! Take a peek into our development process!">
+
+    <!-- Grab Bootstrap and Fontawesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="showdown.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Quicksand" rel="stylesheet">
+
+    <!-- Add style sheet -->
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+  </head>
+  <style>
+    #post {
+      text-align: left;
+    }
+
+    .entry {
+      max-width: 250px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #show {
+      display: none;
+    }
+  </style>
+  <!-- This is the body of the site: This is what's displayed in the browser! -->
+  <body id="grad">
+    <div id="grad-child"></div>
+
+
+    <div class="container">
+      <div class="jumbotron">
+       
+
+        <!-- Title -->
+        <h1 id="title" class="product-title">Ramblings</h1>
+
+        <!-- Default display div that gets hidden if a page is loaded. -->
+        <div id="hide">
+          <div class="entry">
+            <small id="help" class="form-text text-muted">Want to see new blog posts before they're linked here? Consider supporting us on <a href="https://www.patreon.com/Kittybot">Patreon</a> to gain early access!</small>
+            <br/>
+          </div>
+          <br/>
+          <button class="btn btn-outline-dark" onclick="LoadPost('MakeshiftLocalization')">Makeshift Localization</button>
+          <br/>
+          <br/>
+        </div>
+
+        <!-- Post will be here! -->
+        <div id="post"></div>
+
+        <!-- Additional content shown after loading a post -->
+        <div id="show">
+          <a class="btn btn-outline-dark product-back-button fa-1x" role="button" href=".."><i class="fas fa-chevron-circle-left"></i> Back</a>
+          <br/>
+        </div>
+        <hr/>
+
+        <div class="row product-social-footer">
+          <div class="product-social-footer">
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://www.patreon.com/Kittybot"><i class="fab fa-patreon"></i></a>
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://twitter.com/KittyBot_"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://discord.gg/CKf7mKk"><i class="fab fa-discord"></i></a>
+            <a class="btn btn-outline-dark product-social-link" role="button" href="https://github.com/RinSnowMew/KittyBot"><i class="fab fa-github"></i></a>
+            <a class="btn btn-outline-dark product-social-link" role="button" href="/status"><i class="fas fa-chart-area"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script type="text/javascript">
+
+      // Displays the markdown
+      function DisplayMarkdown(content) {
+        let target = document.getElementById('post');
+        let converter = new showdown.Converter();
+
+        if (target) {
+          target.innerHTML = converter.makeHtml(content);
+          document.getElementById("hide").style.display = "none";
+          document.getElementById("show").style.display = "block";
+          document.getElementById("title").style.display = "none";
+        }
+      }
+
+      // Loads a local file on the server
+      // Based on https://stackoverflow.com/questions/36921947/read-a-server-side-file-using-javascript/41133213
+      function LoadFile(file_path) {
+        if(file_path == null)
+          return;
+
+        let result = null;
+        let xmlhttp = new XMLHttpRequest();
+        
+        xmlhttp.open("GET", file_path, false);
+        xmlhttp.send();
+
+        if (xmlhttp.status == 200) {
+          result = xmlhttp.responseText;
+          DisplayMarkdown(result);
+        }
+
+        return result;
+      }
+
+      // Navigates to the appropriate URL
+      function LoadPost(args) {
+        args = args.replace(/\s/g, '');
+        window.location.href += '?post=' + args;
+      }
+
+      // Loading behavior
+      const urlParams = new URLSearchParams(window.location.search);
+      const myParam = urlParams.get('post');
+      if(myParam != null) {
+        LoadFile(myParam + '.md');
+      }
+
+    </script>
+  </body>
+</html>
