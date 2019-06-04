@@ -55,7 +55,9 @@
 <p>
   <code>indicator</code>: Changes the command indicator to any single character. By default, it's '!'. If more than one character is provided, the first one is used!<br/>
   <code>rating</code>: '0' is fully sfw (Derpi and e621 searches are disabled), '1' is filtered (kitty auto appends a sfw tag on any searches), '2' is nsfw (any search will go through). Some other words are supported for setting filter as well.<br/>
-</p>
+  <code>guildrolenotallowed</code>, <code>rolelistremove</code>: Removes a role from the list that users are allowed to add to themselves.<br/>
+  <code>guildroleallowed</code>, <code>rolelistadd</code>: Adds role to the list of roles users are allowed to add to themselves. <br/>
+    </p>
 
 
 <h2>Mod commands</h2>
@@ -68,36 +70,48 @@
 
 <h2>General commands</h2>
 <p>
-  <code>boop</code>: Kitty will react with a counter<br/>
+  <code>addguildrole</code>, <code>roleadd</code>, <code>addrole</code>: Add a role to yourself! <br/>
+  <code>c++</code>, <code>g++</code>, <code>cplus</code>, <code>cpp</code>: Will try to compile any c++ code you put in! Supports up to C++14 standard, uses g++.<br/>
   <code>yeet</code>: Yeet yourself or yeet a friend with @!<br/>
+  <code>guildroleremove</code>, <code>roleremove</code>, <code>removerole</code>: Removes a role from you! Just remember to spell it right! <br/>
+      <code>bethistory</code>: Gives how many beans I've ~~stolen~~ won from your bets! <br/>
+  <code>info</code>, <code>about</code>: Provides author info and a link to Kitty's website<br/>
+  <code>eightball</code>, <code>8ball</code>: Answers a yes or no question! Warning: Kitty can not actually tell the future, she claims no responsibility for any lion mauling, lack of lottery wins, or felony charges.<br/>
+  <code>bet</code>: Allows you to bet your beans, set your amount after the command! Warning! House always wins!
+Sets of 3 will get 2x, 4 will get 10x, and 5 will get 1000x<br/>
+  <code>java</code>, <code>jdoodle</code>: Will compile any java code you put in! Supports Java 1.8<br/>
+  <code>catch</code>: Play catch with yourself or with a friend with @!<br/>
+  <code>results</code>: Will show current results of a poll and percentages of votes per choice<br/>
+  <code>wolfram</code>: Will query wolframalpha with your question and give a full image output of the answer<br/>
+    <code>perish</code>, <code>thenperish</code>: Adds a red, 'a n g e r y' overlay to your icon or the icon of a friend you mentioned<br/>
+    <code>benchmark</code>, <code>bench</code>: Allows you to lookup PC component benchmarks from UserBenchmark! You can use `bench find <name-snippet>` to see what's in the database, `bench info <name-snippet>` to look at a specific component, or the experimental `bench compare` commands!<br/>
+    <code>rpend</code>: Ends RP in channel and gives you a .txt file! <br/>
+    <code>tony</code>, <code>stark</code>, <code>dontfeelgood</code>, <code>dontfeelsogood</code>, <code>snap</code>: Snaps your icon or the icon of a friend you mentioned<br/>
+  <code>tradebeans</code>: Give your friends some of your beans! Just don't forget to @ them! <br/>
+  <code>rolelist</code>: No help text has been added yet for CommandGuildRoleList!<br/>
+    <code>boop</code>: Kitty will react with a counter<br/>
   <code>role</code>: Will show the current role you have, Admins can change others roles with input of 'role x @y' with x being blacklist, general, mod, or admin. Blacklist will not allow the user to interact with kitty anymore, general mod and admin will give the user access to those commands.<br/>
   <code>ping</code>: Will respond with Pong!<br/>
   <code>roll</code>: Based on input of xdy where x is number of dice and y is faces kitty will roll that amount of dice, display the individual rolls and total<br/>
-  <code>info</code>, <code>about</code>: Provides author info and a link to Kitty's website<br/>
   <code>blur</code>: Blurs your icon or the icon of a friend you mentioned<br/>
   <code>choose</code>: With an input of x,y,z where x y and z are all choices, kitty will choose one<br/>
-  <code>rpstart</code>: Starts an rp, add people to it by mentioning them!<br/>
-  <code>bet</code>: Allows you to bet your beans, set your amount after the command! Warning: House always wins!
-Sets of 3 will get 5x, 4 will get 10x, and 5 will get 1000x<br/>
-  <code>derp</code>: Will search derpibooru for the tags entered, if KittyBot's content filter allows it<br/>
-  <code>java</code>: Will compile any java code you put in! Supports Java 1.8<br/>
-  <code>beans</code>: Displays how many beans you have<br/>
-  <code>cplus</code>: Will try to compile any c++ code you put in! Supports up to C++14 standard, uses g++.<br/>
-  <code>tony</code>, <code>stark</code>, <code>dontfeelgood</code>: Snaps your icon or the icon of a friend you mentioned<br/>
-  <code>vote</code>: Vote in a poll with the choice number, won't work if no poll is running, you can't change your vote once you have cast it! Be careful!<br/>
-  <code>results</code>: Will show current results of a poll and percentages of votes per choice<br/>
-  <code>wolfram</code>: Will query wolframalpha with your question and give a full image output of the answer<br/>
-  <code>map</code>: Generates a map! You can pass additional information if you want with the flags `-s<seed> -w<width> -h<height>`. If one of the fields isn't provided, its default will be used. Note that adjusting the width and height impacts the map outcomes.
+    <code>rpstart</code>: Starts an rp, add people to it by mentioning them!<br/>
+    <code>derp</code>: Will search derpibooru for the tags entered, if KittyBot's content filter allows it<br/>
+  <code>teey</code>: Teey yourself back into existance, or teey a friend with @!<br/>
+    <code>beans</code>: Displays how many beans you have<br/>
+      <code>vote</code>: Vote in a poll with the choice number, won't work if no poll is running, you can't change your vote once you have cast it! Be careful!<br/>
+  <code>map</code>: Generates a map! You can pass additional information if you want with the flags `-s<seed>-w<width>-h<height>`. If one of the fields isn't provided, its default will be used. Note that adjusting the width and height impacts the map outcomes.
 
-Default seed: Random
-Default Width: 35(max 50)
+Default seed: Random,
+Default Width: 35(max 50),
 Default Height: 25(max 35)<br/>
   <code>e621</code>: Will search e621 for the tags entered, if KittyBot's content filter allows it<br/>
-    <code>perish</code>, <code>thenperish</code>: Adds a red, 'a n g e r y' overlay to your icon or the icon of a friend you mentioned<br/>
-    <code>showpoll</code>: Will show the current poll running<br/>
-  <code>rpend</code>: Ends RP in channel<br/>
+  <code>showpoll</code>: Will show the current poll running<br/>
+  <code>defaultdance</code>: y'all know forknife, get ready to dance, or make a friend dance with @!<br/>
   <code>help</code>: Lets you look up specific commands, or get a link to a list of all commands.<br/>
-</p>
+      <code>fetch</code>: Throw a custom emote and I'll try to bring it back.... maybe  <br/>
+    <code>crouton</code>: Crouton<br/>
+  </p>
 
           </div>
           <div class="col-md-2"></div>
